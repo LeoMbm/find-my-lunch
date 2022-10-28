@@ -1,4 +1,4 @@
-import { schema, CustomMessages, rules } from '@ioc:Adonis/Core/Validator'
+import { schema, rules } from '@ioc:Adonis/Core/Validator'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 export default class UserValidator {
@@ -39,5 +39,5 @@ export default class UserValidator {
    * }
    *
    */
-  public messages: CustomMessages = {}
+  // public messages: CustomMessages = {}
 }

@@ -26,19 +26,20 @@ Route.get('/', async ({ view }) => {
   return view.render('welcome')
 })
 
-Route.get('/register', async ({ view }) => {
-  return view.render('register-form')
+Route.get('register', async ({ view }) => {
+  return view.render('register_form')
 })
 
-Route.post('/register', 'UsersController.register')
+Route.post('register', 'UsersController.register')
 
-Route.get('/login', async ({ view }) => {
-  return view.render('login-form')
+Route.get('login', async ({ view }) => {
+  return view.render('login_form')
 })
 
-Route.post('/login', 'UsersController.login')
+Route.post('login', 'UsersController.login')
 
-Route.post('/logout', 'UsersController.logout')
+Route.post('logout', 'UsersController.logout')
+
 
 Route.group(() => {
   Route.get('/', 'UsersController.getAllUsers')
