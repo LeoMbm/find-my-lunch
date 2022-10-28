@@ -9,7 +9,7 @@
 <body>
     @if(auth.user)
         <p>You are login as {{auth.user.email}}</p>
-            <form method="POST" action="/logout"> 
+            <form method="GET" action="/logout"> 
                 <button type="submit" >Logout</button>
             </form>
     @endif

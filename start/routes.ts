@@ -38,13 +38,12 @@ Route.get('login', async ({ view }) => {
 
 Route.post('login', 'UsersController.login')
 
-Route.post('logout', 'UsersController.logout')
+Route.get('logout', 'UsersController.logout')
 
 
 Route.group(() => {
   Route.get('/', 'UsersController.getAllUsers')
-}).prefix('/users')
-// .middleware('auth')
+}).prefix('/users').middleware('auth')
 
 
 // Route.group(() => {
