@@ -17,3 +17,4 @@ const findUserLocation = () => {
 }
 
 document.querySelector('.btn-geo').addEventListener('click', findUserLocation)
+
