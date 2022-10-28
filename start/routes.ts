@@ -1,3 +1,4 @@
+
 /*
 |--------------------------------------------------------------------------
 | Routes
@@ -19,7 +20,35 @@
 */
 
 import Route from '@ioc:Adonis/Core/Route'
+// import UserValidator from 'App/Validators/UserValidator';
 
 Route.get('/', async ({ view }) => {
   return view.render('welcome')
 })
+
+Route.get('/register', async ({ view }) => {
+  return view.render('register-form')
+})
+
+Route.post('/register', 'UsersController.register')
+
+Route.get('/login', async ({ view }) => {
+  return view.render('login-form')
+})
+
+Route.post('/login', 'UsersController.login')
+
+Route.post('/logout', 'UsersController.logout')
+
+Route.group(() => {
+  Route.get('/', 'UsersController.getAllUsers')
+}).prefix('/users')
+// .middleware('auth')
+
+
+// Route.group(() => {
+//   Route.get('/', 'PostsController.getAllPost')
+//   Route.post('/', 'PostsController.sendPost')
+// }).prefix('/post').middleware('auth')
+
+
