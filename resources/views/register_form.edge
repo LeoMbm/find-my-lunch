@@ -11,15 +11,22 @@
           class="absolute inset-0 h-full w-full object-cover"
         />
       </aside>
-  
-      <main
-        aria-label="Main"
-        class="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:py-12 lg:px-16 xl:col-span-6"
-      >
+      
+
+      <main aria-label="Main"class="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:py-12 lg:px-16 xl:col-span-6">
         <div class="max-w-xl lg:max-w-3xl">
-          <h1
-            class="mt-6 text-2xl font-bold text-gray-900 dark:text-white sm:text-3xl md:text-4xl"
-          >
+          @if(flashMessages.has('error'))
+          <div role="alert" class="rounded border-l-4 border-red-500 bg-red-50 p-4">
+            <strong class="block font-medium text-red-700"> Something went wrong </strong>
+          
+            <p class="mt-2 text-sm text-red-700">
+              {{flashMessages.get('error')}}
+            </p>
+          </div>
+          
+          @end
+          
+          <h1 class="mt-6 text-2xl font-bold text-gray-900 dark:text-white sm:text-3xl md:text-4xl">
             Welcome to Find my Lunch 🍽️
           </h1>
   
@@ -123,11 +130,33 @@
             </div>
   
             <div class="col-span-6 sm:flex sm:items-center sm:gap-4">
-              <button
-               type="submit" class="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500 dark:hover:bg-blue-700 dark:hover:text-white"
-              >
-                Create an account
-              </button>
+              <button type="submit" class="group relative inline-flex items-center overflow-hidden shrink-0 rounded-md bg-blue-500 px-8 py-3 text-white focus:outline-none focus:ring active:bg-blue-300">
+
+         
+                <span
+                  class="absolute right-0 translate-x-full transition-transform group-hover:-translate-x-4"
+                >
+                  <svg
+                    class="h-5 w-5"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg>
+                </span>
+              
+                <span class="text-sm font-medium transition-all group-hover:mr-4">
+                  Create an account
+                </span>
+   
+            </button>
   
               <p class="mt-4 text-sm text-gray-500 dark:text-gray-400 sm:mt-0">
                 Already have an account?
@@ -137,7 +166,6 @@
               </p>
             </div>
           </form>
-          {{inspect(flashMessages)}}
         </div>
       </main>
     </div>

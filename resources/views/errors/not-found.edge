@@ -1,1 +1,48 @@
-<p> It's a 404 </p>
+@layout('layouts/base')
+@section('content')
+<div class="grid h-screen place-content-center bg-white dark:bg-gray-900">
+    <div class="text-center">
+      <strong class="text-9xl font-black text-gray-200 dark:text-gray-700">
+        404
+      </strong>
+  
+      <h1
+        class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl"
+      >
+        Uh-oh!
+      </h1>
+  
+      <p class="mt-4 text-gray-500 dark:text-gray-400">
+        We can't find that page.
+      </p>
+      <a href="/" class="group mt-6 relative inline-flex items-center text-sm font-medium overflow-hidden rounded bg-blue-300 hover:bg-blue-500 px-7 py-2.5 text-white focus:outline-none focus:ring active:bg-blue-500 dark:bg-blue-500 dark:hover:bg-blue-500 dark:focus:ring-blue-800">
+
+         
+        <span
+          class="absolute right-0 translate-x-full transition-transform group-hover:-translate-x-4"
+        >
+          <svg
+            class="h-5 w-5"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17 8l4 4m0 0l-4 4m4-4H3"
+            />
+          </svg>
+        </span>
+      
+        <span class="text-sm font-medium transition-all group-hover:mr-4">
+          Go Back Home
+        </span>
+  
+  </a>
+    </div>
+  </div>
+@endsection
+  

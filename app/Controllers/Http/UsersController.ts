@@ -4,11 +4,20 @@ import UserValidator from 'App/Validators/UserValidator'
 
 export default class UsersController {
     
-    public async register({ request, response }: HttpContextContract){        
-        const payload = await request.validate(UserValidator)
-        console.log(payload);
-        await User.create(payload)        
-        return response.redirect('/login')
+    public async register({ request, response, session }: HttpContextContract){ 
+        try {
+            const payload = await request.validate(UserValidator)
+            console.log(payload);
+            await User.create(payload)
+            session.flash('notification', 'User created successfully')        
+            return response.redirect('/login')
+            
+        } catch (error) {
+            console.log(error);
+            session.flash('error', 'An user with this email already exists')        
+            return response.redirect('back')
+            
+        }       
     }    
     public async login({ request, response, auth }: HttpContextContract){
         const {email, password} = request.only(['email', 'password'])
