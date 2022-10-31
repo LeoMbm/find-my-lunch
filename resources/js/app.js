@@ -8,8 +8,6 @@ let map;
 
 function createMap(lat, long){
   /* Initialize variables for marker (point in map)*/
-  let marker;
-  let defaultMarker;
 
   
   if (lat || long) {
@@ -28,7 +26,7 @@ function createMap(lat, long){
         
         let resto_long  = i.geometry.coordinates[0]
         let resto_lat  = i.geometry.coordinates[1]
-        marker = L.marker([resto_lat ,resto_long]).addTo(map);
+        let marker = L.marker([resto_lat ,resto_long]).addTo(map);
         marker.bindPopup(`<b>${resto_name}</b><br>${resto_address}.`).openPopup();
         
       });
@@ -37,7 +35,7 @@ function createMap(lat, long){
   
     })
 
-    marker = L.marker([lat , long]).addTo(map);
+    let marker = L.marker([lat , long]).addTo(map);
     marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
   } else {
     map = L.map('map').setView([50.85045 , 4.34878], 17);
@@ -54,11 +52,11 @@ function createMap(lat, long){
       
       let resto_long  = i.geometry.coordinates[0]
       let resto_lat  = i.geometry.coordinates[1]
-      marker = L.marker([resto_lat ,resto_long]).addTo(map);
+      let marker = L.marker([resto_lat ,resto_long]).addTo(map);
       marker.bindPopup(`<b>${resto_name}</b><br>${resto_address}.`).openPopup();
       
     });
-    defaultMarker = L.marker([50.85045 , 4.34878],{icon: greenIcon}).addTo(map);
+    let defaultMarker = L.marker([50.85045 , 4.34878],{icon: greenIcon}).addTo(map);
     defaultMarker.bindPopup(`<b>Current Position</b><br>Default.`).openPopup();
 
   })
@@ -104,15 +102,14 @@ function setMarkerOnMap(lat, long){
 
 function displayCardForRestaurant(array){
   let container = document.getElementById("card-container");
-
-
+  container.innerHTML = '';
+  
+  
   array.forEach(i => {
     let resto_name = i.properties.name || i.properties.address_line1
     let resto_address = i.properties.address_line2
-    
-    let resto_long  = i.geometry.coordinates[0]
-    let resto_lat  = i.geometry.coordinates[1]
     let article = document.createElement("article");
+    article.remove()
     article.setAttribute("class", "overflow-hidden h-4/12 w-full cursor-pointer rounded-lg shadow transition hover:shadow-lg")
     container.append(article)
     let img = document.createElement("img");
@@ -133,9 +130,15 @@ function displayCardForRestaurant(array){
     let item_text = document.createElement("p")
     item_text.setAttribute("class", "mt-2 text-sm leading-relaxed text-gray-500 line-clamp-3")
     divCard.append(item_text)
-    
+    let cta = document.createElement("a")
+    cta.href = "order-food"
+    cta.setAttribute("up-layer", "new")
+    cta.setAttribute("up-follow","")
+    cta.setAttribute("class","text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800")
+    cta.innerHTML = '<svg aria-hidden="true" class="mr-2 -ml-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"></path></svg>Buy now</button>'
+    divCard.append(cta)
   });
-
+  
 }
 
 

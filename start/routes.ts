@@ -40,10 +40,18 @@ Route.post('login', 'UsersController.login')
 
 Route.get('logout', 'UsersController.logout')
 
+Route.get('/about', async ({ view }) => {
+  return view.render('about')
+})
+Route.get('/order-food', async ({ view }) => {
+  return view.render('order_food')
+})
 
 Route.group(() => {
   Route.get('/', 'RestaurantsController.showRestaurants')
 }).prefix('/restaurants')
+
+
 
 
 Route.group(() => {
