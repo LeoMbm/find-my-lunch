@@ -16,6 +16,7 @@
 * [] User can register with social media
 * [] caching ? redis ?  
 * [] GraphQL ?  
+* [] Refactor all project !  
  
 [View all task in Notion](https://labboxstudio.notion.site/Tech-exercise-76273486360a47cdba1a693de4338baf)
 

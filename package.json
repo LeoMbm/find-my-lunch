@@ -69,6 +69,7 @@
     "@adonisjs/view": "^6.2.0",
     "@geoapify/geocoder-autocomplete": "^1.4.2",
     "@tailwindcss/forms": "^0.5.3",
+    "@tailwindcss/line-clamp": "^0.4.2",
     "luxon": "^3.0.4",
     "node-fetch": "^3.2.10",
     "pg": "^8.8.0",
