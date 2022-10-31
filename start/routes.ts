@@ -22,6 +22,10 @@
 import Route from '@ioc:Adonis/Core/Route'
 // import UserValidator from 'App/Validators/UserValidator';
 
+Route.get('*', async ({ view }) => { 
+  return view.render('index') 
+}).as('not_found')
+
 Route.get('/', async ({ view }) => {
   return view.render('welcome')
 })

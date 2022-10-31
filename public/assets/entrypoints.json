@@ -7,6 +7,14 @@
       "js": [
         "http://localhost:8080/assets/app.js"
       ]
+    },
+    "index": {
+      "css": [
+        "http://localhost:8080/assets/index.css"
+      ],
+      "js": [
+        "http://localhost:8080/assets/index.js"
+      ]
     }
   }
 }
