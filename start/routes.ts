@@ -42,6 +42,11 @@ Route.get('logout', 'UsersController.logout')
 
 
 Route.group(() => {
+  Route.get('/', 'RestaurantsController.showRestaurants')
+}).prefix('/restaurants')
+
+
+Route.group(() => {
   Route.get('/', 'UsersController.getAllUsers')
 }).prefix('/users').middleware('auth')
 
