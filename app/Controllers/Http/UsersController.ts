@@ -24,6 +24,7 @@ export default class UsersController {
             
         }       
     }    
+    
     public async login({ request, response, auth }: HttpContextContract){
         const {email, password} = request.only(['email', 'password'])
         try {
