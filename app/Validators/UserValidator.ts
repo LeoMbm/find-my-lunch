@@ -1,4 +1,4 @@
-import { schema, rules } from '@ioc:Adonis/Core/Validator'
+import { schema, rules, CustomMessages } from '@ioc:Adonis/Core/Validator'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 export default class UserValidator {
@@ -24,10 +24,14 @@ export default class UserValidator {
    *    ```
    */
   public schema = schema.create({
-    email: schema.string({}, [rules.email(), rules.unique({ table: 'users', column: 'email'})]),
-    password: schema.string(),
-    first_name: schema.string(),
-    last_name: schema.string(),
+    email: schema.string({}, [
+      rules.email(),
+      rules.unique({ table: 'users', column: 'email' }),
+      rules.required(),
+    ]),
+    password: schema.string({}, [rules.minLength(8),rules.regex(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/), rules.confirmed('passwordConfirmation'), rules.required()]),
+    first_name: schema.string({}, [rules.required()]),
+    last_name: schema.string({}, [rules.required()]),
   })
 
   /**
@@ -41,5 +45,10 @@ export default class UserValidator {
    * }
    *
    */
-  // public messages: CustomMessages = {}
+  public messages: CustomMessages = {
+    'user.username.required': 'Missing value for username',
+    'user.password.camelCase': 'Your password must contains 1 CamelCase minimum',
+
+    'user.password.minLength': 'our password must contains {{ options.minLength }} characters',
+  }
 }
