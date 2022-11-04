@@ -49,6 +49,12 @@ Route.group(() => {
   Route.get('/', 'UsersController.getAllUsers')
 }).prefix('/users')
 
+
+Route.group(() => {
+  Route.get('/', 'MealsController.index')
+}).prefix('/meal')
+
+
 // Route.group(() => {
 //   Route.get('/', 'PostsController.getAllPost')
 //   Route.post('/', 'PostsController.sendPost')
