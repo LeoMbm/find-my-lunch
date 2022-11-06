@@ -19,23 +19,6 @@
 */
 
 import Route from '@ioc:Adonis/Core/Route'
-// import UserValidator from 'App/Validators/UserValidator';
-
-// Route.get('/', async ({ view }) => {
-//   return view.render('welcome')
-// })
-// Route.get('register', async ({ view }) => {
-//   return view.render('register_form')
-// })
-// Route.get('login', async ({ view }) => {
-//   return view.render('login_form')
-// })
-// Route.get('/about', async ({ view }) => {
-//   return view.render('about')
-// })
-// Route.get('/order-food', async ({ view }) => {
-//   return view.render('order_food')
-// })
 
 
 
@@ -46,16 +29,22 @@ Route.get('/logout', 'UsersController.logout')
 }).prefix('/auth')
 
 Route.group(() => {
-  Route.get('/', 'UsersController.getAllUsers')
-}).prefix('/users')
+  Route.get('/', 'UsersController.getUserInfo')
+}).prefix('/user')
+
+
 
 
 Route.group(() => {
   Route.get('/', 'MealsController.index')
 }).prefix('/meal')
 
+Route.group(() => {
+  Route.get('/:lat/:long', 'RestaurantsController.listRestaurants')
+}).prefix('/restaurants')
+
 
 // Route.group(() => {
 //   Route.get('/', 'PostsController.getAllPost')
 //   Route.post('/', 'PostsController.sendPost')
-// }).prefix('/post').middleware('auth')
+// }).prefix('/post')
