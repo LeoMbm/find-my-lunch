@@ -1,3 +1,4 @@
+import Hash from '@ioc:Adonis/Core/Hash'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import User  from 'App/Models/User';
 import UserValidator from 'App/Validators/UserValidator'
@@ -26,12 +27,18 @@ export default class UsersController {
         }       
     }    
     
-    public async login({ request, response, auth, session }: HttpContextContract){
+    public async login({ request, response, auth }: HttpContextContract){
         const {email, password} = request.only(['email', 'password'])
         try {
-            console.log(request.all());
-            await auth.attempt(email, password)
-            return response.status(200).send({message: 'Login successfully'})
+            const user = await User.findBy('email', email)
+            // if (!(await Hash.verify(user.password, password))) {
+            //     return response.unauthorized('Invalid credentials')
+            //   }
+              const token = await auth.attempt(email, password)
+              console.log(token);
+              
+            
+            return response.status(200).send({message: 'Login successfully', user: user});
             
         } catch (error) {
             console.log(error);
@@ -44,15 +51,20 @@ export default class UsersController {
 
     }
 
+
     public async logout({ response, auth }: HttpContextContract){
-    await auth.logout()
+        await auth.logout()
     return response.status(200).send({message: 'Logout successfully'})
     }
 
     public async getUserInfo ({ request, params ,response, auth, session }: HttpContextContract){
-
+        // TODO: How can i have the user id like -- request.user.id -- how to use session in adonis and react
+      
         try {
-            const user = await User.find(1)
+            const id = auth.user?.$original.id
+            const user = await User.find(id)
+            console.log(session);
+      
             return response.status(200).send({message: user})
             
         } catch (error) {
