@@ -1,4 +1,3 @@
-
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import User from 'App/Models/User'
 import UserValidator from 'App/Validators/UserValidator'
@@ -16,13 +15,11 @@ export default class UsersController {
     } catch (error) {
       console.log(error)
       session.flash('error', 'An user with this email already exists')
-      return response
-        .status(400)
-        .send({
-          message: 'An user with this email already exists',
-          status: response.getStatus(),
-          error: error.messages,
-        })
+      return response.status(400).send({
+        message: 'An user with this email already exists',
+        status: response.getStatus(),
+        error: error.messages,
+      })
     }
   }
 
@@ -33,17 +30,15 @@ export default class UsersController {
         const user = await User.findBy('email', email)
         // I think is not very secure ...
         const token = await auth.use('api').login(user)
-        return response.status(200).send({ message: 'Login successfully', user: user, token})
+        return response.status(200).send({ message: 'Login successfully', user: user, token })
       }
     } catch (error) {
       console.log(error)
-      return response
-        .status(400)
-        .send({
-          message: 'Invalid credentials',
-          status: response.getStatus(),
-          error: error.responseText,
-        })
+      return response.status(400).send({
+        message: 'Invalid credentials',
+        status: response.getStatus(),
+        error: error.responseText,
+      })
     }
   }
 

@@ -5,16 +5,16 @@ export default class Order extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
-  @column() 
+  @column()
   public food: string
 
-  @column() 
+  @column()
   public drink: string
 
-  @column() 
-  public price: string
+  @column()
+  public price: number
 
-  @column() 
+  @column()
   public userId: number
 
   @column.dateTime({ autoCreate: true })
