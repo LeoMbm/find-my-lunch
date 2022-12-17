@@ -5,6 +5,18 @@ export default class Order extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
+  @column() 
+  public food: string
+
+  @column() 
+  public drink: string
+
+  @column() 
+  public price: string
+
+  @column() 
+  public userId: number
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 

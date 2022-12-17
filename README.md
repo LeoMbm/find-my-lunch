@@ -2,6 +2,28 @@
 
 ![alt text](find-my-lunch-preview.png)
 
+## Description
+
+This is a simple API to find restaurant around you.
+
+## Installation
+
+```bash
+$ npm install
+```
+
+## Running the app
+
+```bash
+# development
+$ npm run dev
+
+# watch mode
+$ npm run dev:watch
+
+# production mode
+$ npm run start
+```
 
 * [ ] TODO
 * [] Database Design/Requirements
@@ -35,6 +57,9 @@
 - [PostgreSQL](https://www.postgresql.org/)
 - [Redis](https://redis.io/)
 - [Adonis](https://docs.adonisjs.com/guides/introduction)
+
+
 ## Library
 
 - [Geoapify](https://apidocs.geoapify.com/)
+
