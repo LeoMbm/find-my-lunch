@@ -33,34 +33,51 @@ export default class OrdersController {
   }
 
   public async index({ response, auth }: HttpContextContract) {
-    const user = await auth.authenticate()
-    if (!user) {
-      return response.status(401).send({ message: 'You are not authenticated' })
+    try {
+      const user = await auth.authenticate()
+      if (!user) {
+        return response.status(401).send({ message: 'You are not authenticated' })
+      }
+      const orders = await user.related('orders').query()
+      return response.status(200).send({ message: 'Orders fetched successfully', orders })
+    } catch (error) {
+      console.error(error)
+      return response.status(500).send({ message: 'An error occurred while fetching orders' })
     }
-    const orders = await user.related('orders').query()
-    return response.status(200).send({ message: 'Orders fetched successfully', orders })
   }
 
   public async show({ response, auth, params }: HttpContextContract) {
-    const user = await auth.authenticate()
-    if (!user) {
-      return response.status(401).send({ message: 'You are not authenticated' })
+    try {
+      const user = await auth.authenticate()
+      if (!user) {
+        return response.status(401).send({ message: 'You are not authenticated' })
+      }
+      const order = await user.related('orders').query().where('id', params.id).first()
+      if (!order) {
+        return response.status(404).send({ message: 'Order not found' })
+      }
+      return response.status(200).send({ message: 'Order fetched successfully', order })
+    } catch (error) {
+      console.error(error)
+      return response.status(500).send({ message: 'An error occurred while fetching order' })
     }
-    const order = await user.related('orders').query().where('id', params.id).first()
-    return response.status(200).send({ message: 'Order fetched successfully', order })
   }
-
   public async destroy({ response, auth, params }: HttpContextContract) {
-    const user = await auth.authenticate()
-    if (!user) {
-      return response.status(401).send({ message: 'You are not authenticated' })
+    try {
+      const user = await auth.authenticate()
+      if (!user) {
+        return response.status(401).send({ message: 'You are not authenticated' })
+      }
+      const order = await user.related('orders').query().where('id', params.id).first()
+      if (!order) {
+        return response.status(404).send({ message: 'Order not found' })
+      }
+      await order.delete()
+      return response.status(200).send({ message: 'Order deleted successfully' })
+    } catch (error) {
+      console.error(error)
+      return response.status(500).send({ message: 'An error occurred while deleting order' })
     }
-    const order = await user.related('orders').query().where('id', params.id).first()
-    if (!order) {
-      return response.status(404).send({ message: 'Order not found' })
-    }
-    await order.delete()
-    return response.status(200).send({ message: 'Order deleted successfully' })
   }
 
 }
