@@ -15,6 +15,18 @@ export default class Order extends BaseModel {
   public price: number
 
   @column()
+  public phone: string
+
+  @column()
+  public postal_code: string
+
+  @column()
+  public country: string
+
+  @column()
+  public card_number: string
+
+  @column()
   public userId: number
 
   @column.dateTime({ autoCreate: true })

@@ -1,5 +1,5 @@
 declare module '@ioc:Adonis/Core/Validator' {
-    interface Rules {
-      camelCase(maxLength?: number): Rule
-    }
+  interface Rules {
+    camelCase(maxLength?: number): Rule
   }
+}

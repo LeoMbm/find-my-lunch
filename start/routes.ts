@@ -20,20 +20,15 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 
-
-
 Route.group(() => {
   Route.post('/register', 'UsersController.register')
-Route.post('/login', 'UsersController.login')
-Route.post('/logout', 'UsersController.logout')
+  Route.post('/login', 'UsersController.login')
+  Route.post('/logout', 'UsersController.logout')
 }).prefix('/auth')
 
 Route.group(() => {
   Route.get('/', 'UsersController.getUserInfo')
 }).prefix('/user')
-
-
-
 
 Route.group(() => {
   Route.get('/', 'MealsController.index')
@@ -42,7 +37,6 @@ Route.group(() => {
 Route.group(() => {
   Route.get('/:lat/:long', 'RestaurantsController.listRestaurants')
 }).prefix('/restaurants')
-
 
 // Route.group(() => {
 //   Route.get('/', 'PostsController.getAllPost')
